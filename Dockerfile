@@ -20,10 +20,6 @@ FROM alpine:3.7 AS release
 
     COPY --from=compiler /bin/hudserver /bin/hudserver
 
-    ENV TINI_VERSION v0.18.0
-    ADD https://github.com/krallin/tini/releases/download/${TINI_VERSION}/tini-static /bin/tini
-    RUN chmod +x /bin/tini
-
     RUN addgroup -g 1000 -S hud && \
         adduser -u 1000 -S hud -G hud
     USER hud
@@ -31,7 +27,5 @@ FROM alpine:3.7 AS release
     COPY install ${APPDIR}
     COPY index.html ${APPDIR}
     COPY manifests/hud-catalog.tgz ${APPDIR}
-
-    ENTRYPOINT ["/bin/tini", "--"]
 
     CMD ["/bin/hudserver"]

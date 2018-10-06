@@ -1,0 +1,10 @@
+name: "hello-world"
+description: "Test docker application for HUD"
+repository:
+    type": git
+    url": git@github.com:hurbcom/sample-hello-world.git
+folder: hud-hello-world
+scripts:
+    setup: sh ./setup.sh
+    start: sh ./start.sh
+    stop: docker stop hello-world

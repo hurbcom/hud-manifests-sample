@@ -1,6 +1,0 @@
-name: "hello-world"
-description: "Test docker application for HUD"
-scripts:
-    setup: docker build -t hurb/hello-world:latest https://raw.githubusercontent.com/hurbcom/sample-hello-world/master/Dockerfile
-    start: docker run -ti --rm -d -p 60008:80 --name hello-world hurb/hello-world:latest
-    stop: docker stop hello-world

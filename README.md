@@ -1,29 +1,32 @@
-Application manifest catalog for [HUD](https://github.com/HurbCom/hud)
+# Sample application manifest catalog for [HUD](https://github.com/HurbCom/hud)
 
 ## Adding new applications
 
-Par adicionar uma nova aplicação ao HUD basta criar um arquivo `manifest.json` na pasta **manifests** desse projeto, seguindo o seu [contrato](https://github.com/HurbCom/hud-manifests/wiki/Manifest-file). Após terminar o arquivo abra um pull request e logo que for aceito e for para a master, execute os comandos `make build-catalog` e `make upload-catalog`.
+Adding a new application into HUD means you just need to create a yaml manifest file following it's [scheme](https://github.com/HurbCom/hud-manifests-sample/wiki/Manifest-file). After finishing your manifest file you should run `hudctl manifest-add folder-for/manifest-files-name.yml` to add it to you local manifests catalog. It will be available just for you.
 
-Se você quiser apenas ter um contêiner docker gerenciado pelo HUD para testar algo, basta criar um arquivo `manifest.json` e colocá-lo na pasta `~/.hudctl/manifests`. Qualquer contêiner docker pode ser gerenciado pelo hudctl, bastando que ele tenha um comando para ser configurado, um para iniciar e outro para ser encerrado.
+If you need it to share it with your colleagues you will need to  pack and deploy the catalog on a centralized server. You can use the `Dockerfile` provided here to pack and server the catalog at any domain you would like. Then you'll need to change the `manifestUrl` at the `~/.hudctl/config.yml`
+
+Any docker container can be "managed" by HUD, you just need to create a simple manifest file with commands to setup, start and stop and then add it to you local catalog. For instance, if you are using a docker container that does not have a manifest file it will be available at **container-name.hud** as well.
 
 
 ## Different types of manifests
 
 ### Local development
 
-A aplicação é mantida por você, o código dela esta na sua máquina e sempre sofre alterações.
+The application is maintained by you, the code is in your machine and is under high development.
 
-E.g.: [Application Border Control](https://github.com/HurbCom/hud-manifests/blob/master/manifests/manifests/hello-world.yml)
+E.g.: [Hello World](https://github.com/HurbCom/hud-manifests/blob/master/manifests/manifests/hello-world.yml)
 
 ### Third-party development
 
-A aplicação é mantida por terceiros e só é preciso iniciar o container Docker dela.
+The application is maintained by others and you just need to start it's container.
 
 E.g.: [Memcached](https://github.com/HurbCom/hud-manifests/blob/master/manifests/manifests/memcached.yml)
 
 ### Local Dockerfiles
 
-A aplicação é mantida por terceiros mas é preciso fazer algumas pequenas configurações.
-Nesse caso é necessário criar um arquivo no padrão **Dockerfile**, usando o próprio nome da aplicação, na pasta `Dockerfile` e caso necessário alguma configuração na pasta `Dockerfile/conf`
+The application is maintained by others but you need to do some small hacks.
+In this scenario you must create a **Dockerfile** named as **your application-name-and-not-as- Dockerfile** at the `Dockerfile` folder. If you need any extra configuration file you can place it at the `Dockerfile/conf` folder.
+On the following example the Thumbor dockerfile is placed as `thumbor` in the `Dockefile` folder
 
 E.g.: [Thumbor](https://github.com/HurbCom/hud-manifests/blob/master/manifests/manifests/thumbor.yml)

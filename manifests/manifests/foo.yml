@@ -1,6 +1,6 @@
-name: sample-foo
+name: foo
 description: Sample application to test cross domain request inside HUD domain.
 scripts:
-  setup: docker build --target=foo -t hud/{{name}}:latest - < {{config}}/Dockerfile/sample-foobar
+  setup: docker build --target=foo -t hud/{{name}}:latest -f {{config}}/Dockerfile/foobar .
   start: docker run -it --rm -d -p 60080:80 --name {{name}}  hu/{{name}}:latest
   stop: docker stop {{name}}
