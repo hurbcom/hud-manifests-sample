@@ -1,0 +1,7 @@
+name: postgres9
+description: PostgreSQL v9 service
+folder: "~/.hudctl/databases/postgres9_data"
+scripts:
+  start: docker run --rm --name {{name}} -d -p 5432:5432 -e POSTGRES_PASSWORD=root
+    -v {{folder}}:/var/lib/postgresql/data postgres:9
+  stop: docker stop {{name}}

@@ -1,0 +1,7 @@
+name: mongo
+description: MongoDb v3.4.10 service
+folder: "~/.hudctl/databases/mongo_data"
+scripts:
+  start: docker run --name {{name}} -d --restart always -p27017:27017 -v {{folder}}:/data/db
+    mongo:3.4.10 --storageEngine wiredTiger
+  stop: docker stop {{name}}

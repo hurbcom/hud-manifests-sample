@@ -1,0 +1,13 @@
+docker:
+  Host: sqns
+  Port: 80
+  SqsPort: 9324
+  SnsPort: 9292
+  LogMessages: true
+  LogFile: /usr/hud/goaws.log
+  Queues:
+    - Name: hud-sample
+  Topics:
+    - Name: sample
+      Subscriptions:
+        - QueueName: hud-sample

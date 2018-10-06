@@ -1,0 +1,5 @@
+name: memcached
+description: Memcached service
+scripts:
+  start: docker run --name {{name}} -d --restart always -p11211:11211 memcached:latest
+  stop: docker stop {{name}}

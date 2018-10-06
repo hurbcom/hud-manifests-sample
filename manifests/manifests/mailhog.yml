@@ -1,0 +1,6 @@
+name: mailhog
+description: SMTP web GUI for handling all emails from Docker containers
+scripts:
+  setup: docker build -t hud/{{name}}:latest - < {{config}}/Dockerfile/mailhog
+  start: docker run -it --rm -d -p 1025:25 -p 8025:80 --name {{name}}  hud/{{name}}:latest
+  stop: docker stop {{name}}

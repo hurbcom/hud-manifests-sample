@@ -1,0 +1,6 @@
+name: thumbor
+description: Dynamic image resizer and transcoder
+scripts:
+  setup: docker build -t hud/{{name}}:latest - < {{config}}/Dockerfile/thumbor
+  start: docker run -it -d -p 8000:80 --restart always --name {{name}} -w /wheelhouse  hud/{{name}}:latest
+  stop: docker stop {{name}}

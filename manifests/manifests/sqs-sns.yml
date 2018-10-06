@@ -1,0 +1,7 @@
+name: sqs-sns
+description: AWS SQS and SNS simulator
+scripts:
+  setup: docker build -t hud/{{name}}:latest - < {{config}}/Dockerfile/goaws
+  start: docker run -it --rm -d -p 8116:80 -p 9324:9324 -p 9292:9292 --name {{name}}
+    -v{{config}}/conf:/conf -w /usr/hud hud/{{name}}:latest
+  stop: docker stop {{name}}

@@ -1,0 +1,15 @@
+FROM debian:jessie
+
+ENV PORT 80
+ENV APPDIR /usr/hud
+
+EXPOSE $PORT
+VOLUME ["$APPDIR"]
+WORKDIR $APPDIR
+
+RUN apt-get update && apt-get install -yqq ruby rubygems-integration
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+RUN gem install fakes3 -v 0.2.5
+
+ENTRYPOINT /usr/local/bin/fakes3 -r /usr/hud -p $PORT

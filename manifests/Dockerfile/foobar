@@ -1,0 +1,30 @@
+FROM nginx:alpine AS base
+    ENV PORT 80
+    ENV APPDIR /usr/hud
+
+    EXPOSE $PORT
+    WORKDIR $APPDIR
+
+
+RUN echo 'worker_processes 1; \
+daemon off; \
+error_log nginx_error.log; \
+events { \
+    worker_connections 1024; \
+} \
+ \
+http { \
+    server { \
+        listen 8008; \
+ \
+        location / { \
+            root /Users/bsergean/src/sandbox/json/jsoncpp; \
+        } \
+    } \
+}' > /etc/nginx/nginx.conf
+
+FROM base AS foo
+ #   COPY ./conf/nginx/foo.conf /etc/nginx/nginx.conf
+RUN /bin/sh
+FROM base AS bar
+  #  COPY ./conf/nginx/bar.conf /etc/nginx/nginx.conf

@@ -1,0 +1,7 @@
+name: s3
+description: Same, but different, but still same. It's Fake S3
+folder: "../s3_data"
+scripts:
+  setup: docker build -t hud/{{name}}:latest - < {{config}}/Dockerfile/fake-s3
+  start: docker run -it --rm -d -p 8024:80 --name {{name}} -v{{folder}}:/usr/hud -w /usr/hud hud/{{name}}:latest
+  stop: docker stop {{name}}
