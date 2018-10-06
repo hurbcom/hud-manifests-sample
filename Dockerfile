@@ -24,8 +24,7 @@ FROM alpine:3.7 AS release
         adduser -u 1000 -S hud -G hud
     USER hud
 
-    COPY install ${APPDIR}
     COPY index.html ${APPDIR}
-    COPY manifests/hud-catalog.tgz ${APPDIR}
+    COPY --from=code manifests/hud-catalog.tgz ${APPDIR}
 
     CMD ["/bin/hudserver"]
