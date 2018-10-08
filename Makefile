@@ -32,7 +32,7 @@ build-docker-image:
 	@echo "Building docker image from Dockerfile"
 	@docker build --target ${DOCKER_STAGE} . -t hud/${CONTAINER_NAME}:latest
 
-run-dev: welcome check-if-docker-image-exists ## Run project for development purposes with debug output
+run-dev: welcome check-if-docker-image-exists ## Run container server in development stage
 	@echo 'Running on http://localhost:$(PORT)/ping or http://$(CONTAINER_NAME).hud/ping'
 	@docker run -t${INTERACTIVE} --rm -v ${PWD}:${APPDIR}:delegated -p $(PORT):80 -e DEBUG=* -e USER_PERM=$(shell id -u):$(shell id -g) -w ${APPDIR} --name ${CONTAINER_NAME} hud/${CONTAINER_NAME}:latest
 
@@ -44,7 +44,6 @@ endif
 	@echo Compiling catalog package
 	@cd manifests; tar -zcvf hud-catalog.tgz --exclude hud-catalog.tgz --exclude README.md .; cd ..
 	@echo "\nhud-catalog.tgz generated!"
-
 
 
 help: welcome
