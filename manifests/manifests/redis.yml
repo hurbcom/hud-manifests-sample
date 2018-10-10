@@ -2,5 +2,5 @@ name: redis
 description: Redis service
 folder: "~/.hudctl/databases/redis_data"
 scripts:
-  start: docker run --name {{name}} -d -p6379:6379 -v {{folder}}:/data redis:latest --appendonly yes
+  start: docker run --rm --name {{name}} -d -p6379:6379 -v {{folder}}:/data redis:latest --appendonly yes
   stop: docker stop {{name}}
