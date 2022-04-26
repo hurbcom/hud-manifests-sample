@@ -2,7 +2,7 @@
 
 ## Adding new applications
 
-Adding a new application into HUD means you just need to create a yaml manifest file following it's [scheme](https://github.com/HurbCom/hud-manifests-sample/wiki/Manifest-file). After finishing your manifest file you should run `hudctl manifest-add folder-for/manifest-files-name.yml` to add it to you local manifests catalog. It will be available just for you.
+Adding a new application into HUD means you just need to create a yaml manifest file following it's [scheme](https://github.com/hurbcom/hud-manifests/wiki/Arquivo-manifest.json). After finishing your manifest file you should run `hudctl manifest-add folder-for/manifest-files-name.yml` to add it to you local manifests catalog. It will be available just for you.
 
 If you need it to share it with your colleagues you will need to  pack and deploy the catalog on a centralized server. You can use the `Dockerfile` provided here to pack and server the catalog at any domain you would like. Then you'll need to change the `manifestUrl` at the `~/.hudctl/config.yml`
 
